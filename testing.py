@@ -215,25 +215,9 @@ def main(predicts, y_labels):
     # rc = roc_curve(y_labels, predicts)
     print('acc={:.2f}, f1={:.2f},r={:.2f}, p={:.2f}'.format(acc,f1,r,p))
 
-    exit()
-    print('Computing t-SNE embedding')
-    perplexity=1000
-    tsne = TSNE(n_components=2,n_iter=1000,perplexity=perplexity, init='pca', random_state=2)
-
-    # df = pd.read_csv('NSL_KDD_Test_one_hot.csv', header=None)
-    # df_data = df.iloc[:, 0:121].to_numpy()
-    # df_data = np.log(df_data+1)
-    # df_data = preprocessing.scale(df_data)
-    # df_labels = df.iloc[:, 121].to_numpy(dtype=np.long)
     
-    result = tsne.fit_transform(predicts)
-    plot_embedding(result, y_labels,title='t-sne%d'%perplexity)
-    plt.savefig('df_tsne--%d.pdf'%perplexity)
-    #plt.show()
-
-
 
 if __name__ == '__main__':
     # KDDTest_one_hot_-21.csv
-    predicts, y_labels = get_data2('checkpoint1/df_85.64_ckpt.t7','NSL_KDD_Test_one_hot.csv') # 
+    predicts, y_labels = get_data2('checkpoint/df_85.64_ckpt.t7','NSL_KDD_Test_one_hot.csv') # 
     main(predicts, y_labels)
